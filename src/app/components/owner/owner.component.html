@@ -1,0 +1,54 @@
+<div class="row mt-5">
+  <div class="rounded shadow-sm col-md10 bg-light justify-content-evenly">
+    <div class="alert alert-dark">
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="/assets/pict/bootstrap-icons.svg#briefcase" />
+      </svg>
+      <i>Заявки пользователей</i>
+    </div>
+    <table class="table usr-reqs" id="requests">
+      <thead>
+      <tr class="table-primary">
+        <th>ID</th>
+        <th>Заявка на сервис</th>
+        <th>Работник</th>
+        <th>Должность</th>
+        <th>Отдел</th>
+        <th>Юзер</th>
+        <th>Роль</th>
+        <th>Комментарий</th>
+        <th>Действие</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let request of requests">
+        <td [textContent]="request.reqId"></td>
+        <td [textContent]="request.context"></td>
+        <td [textContent]="request.fio"></td>
+        <td [textContent]="request.employees.positions.position"></td>
+        <td [textContent]="request.employees.positions.name"></td>
+        <td [textContent]="request.username"></td>
+        <td [textContent]="request.role"></td>
+        <td [textContent]="request.coment"></td>
+        <td class="table-light"><div class="row">
+          <a class="btn btn-outline-success btn-sm col-4"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Разрешить"
+             (click) = "confirm(request.reqId)">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#check" />
+            </svg>
+          </a>
+          <a class="btn btn-outline-danger btn-sm col-4" id="ban"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Отклонить"
+             (click) = "dismiss(request.reqId)">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#x" />
+            </svg>
+          </a></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+

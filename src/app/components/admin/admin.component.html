@@ -1,0 +1,75 @@
+<div class="row mt-5">
+  <div class="rounded shadow-sm col-md10 bg-light justify-content-evenly">
+    <div class="alert alert-dark">
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="/assets/pict/bootstrap-icons.svg#briefcase" />
+      </svg>
+      <i>Заявки пользователей</i>
+    </div>
+    <table class="table border-sky-500 usr-reqs">
+      <thead>
+      <tr class="table-primary tab">
+        <th>ID</th>
+        <th>Заявка на сервис</th>
+        <th>Работник</th>
+        <th>Должность</th>
+        <th>Отдел</th>
+        <th>Юзер</th>
+        <th>Роль</th>
+        <th>Комментарий</th>
+        <th>Действие</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let request of requests">
+        <td [textContent]="request.reqId"></td>
+        <td><div class="row justify-content-between">
+          <div class="col">{{request.context}}</div>
+          <div class="col btn-group" id="role">
+            <button class="visually-hidden"></button>
+            <button (click)="getRoles(request.serviceId)" type="button" class="btn btn-sm btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Переключатель выпадающего списка</span>
+            </button>
+            <div class="dropdown-menu" id="details"><div class="row">
+              <div class="col-4" style="border-right:1px gray solid">
+                <p class="text-danger" style="text-align: center"><b>Роли</b></p>
+                <p *ngFor="let role of roles">{{role.role}}</p>
+              </div>
+              <div class="col-4" style="border-right:1px gray solid">
+                <p class="text-danger" style="text-align: center"><b>Пользователи</b></p>
+                <p *ngFor="let user of users">{{user}}</p>
+              </div>
+              <div class="col-4">
+                <p class="mt-4">Количество запросов данного сервиса всего: <b>{{count_of_service_requests}}</b></p>
+                <p class="mt-4">Количество выполненных вами запросов данного сервиса: <b>{{count_of_complited_requests_to_the_service}}</b></p>
+              </div>
+            </div></div>
+          </div></div>
+        </td>
+        <td [textContent]="request.fio"></td>
+        <td [textContent]="request.employees.positions.position"></td>
+        <td [textContent]="request.employees.positions.name"></td>
+        <td [textContent]="request.username"></td>
+        <td [textContent]="request.role"></td>
+        <td [textContent]="request.coment"></td>
+        <td class="table-light"><div class="row">
+          <a class="btn btn-outline-success btn-sm col-4"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Разрешить"
+             (click)="confirm(request.reqId)">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#check" />
+            </svg>
+          </a>
+          <a class="btn btn-outline-danger btn-sm col-4" id="ban"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Отклонить"
+            (click) = "dismiss(request.reqId)">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#x" />
+            </svg>
+          </a></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

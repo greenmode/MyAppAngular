@@ -1,0 +1,38 @@
+<div class="form-control mt-5 bg-light">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1 class="h3 mb-3 fw-normal">Авторизируйтесь в системе</h1>
+    <label for="employee">Выбор работника</label>
+    <div class="form-floating mb-3">
+      <select id="employee" required class="form-select" aria-label=".form-select-lg example"
+              formControlName="employee">
+        <option *ngFor="let employee of employees"
+                [value]="employee.employeeId"
+                [text]="employee.fio"
+                (click)="onclick(employee.employeeId)">
+        </option>
+      </select>
+    </div>
+    <label for="username">Выбор юзера</label>
+    <div class="form-floating mb-3">
+      <select id="username" required class="form-select"
+              aria-label=".form-select-lg example" formControlName="user">
+        <option *ngFor="let user of users"
+                [value]="user.userId"
+                [text]="user.username"
+                (click)="username=user.username">
+        </option>
+      </select>
+    </div>
+    <label for="password">Пароль</label>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" />
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Запомнить меня
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="form.invalid">Войти</button>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+i {
+  margin-left: 50px;
+}
+
+.rounded {
+  margin-left: 30px;
+}
+
+.rounded > div:first-child {
+  margin: -20px 0 30px 0;
+}

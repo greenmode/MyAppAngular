@@ -1,0 +1,96 @@
+<div class="row mt-5  justify-content-evenly">
+  <div class="rounded shadow-sm col-md-3 bg-light">
+    <div class="alert alert-info">
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="/assets/pict/bootstrap-icons.svg#hdd-network" />
+      </svg>
+      <i>Запрос доступа к сервису</i>
+    </div>
+<!--    <div CLASS="alert alert-danger">Для этой роли доступ к сервису закрыт!</div>-->
+    <form class="mt-3" [formGroup]="form" (ngSubmit)="submit()">
+      <div>
+        <label for="service" class="form-label">Выберите сервис</label>
+        <select class="form-select" id="service" formControlName="service">
+          <option *ngFor="let service of services"
+                  [value]="service.serviceId"
+                  [text]="service.context">
+          </option>
+        </select>
+      </div>
+      <div class="mt-3">
+        <label for="role" class="form-label">Выберите доступную роль</label>
+        <select class="form-select" id="role" formControlName="role">
+          <option *ngFor="let role of roles"
+                  [value]="role.roleId"
+                  [text]="role.role">
+          </option>
+        </select>
+      </div>
+      <textarea class="form-control mt-3" formControlName="comment" maxlength="1000" rows="4" placeholder="Комментарий, если нужно..."></textarea>
+      <div class="mt-3" style="float:right">
+        <button type="submit" class="btn btn-primary mb-3">Запросить</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="rounded shadow-sm col-md-8 bg-light">
+    <div class="alert alert-warning">
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="/assets/pict/bootstrap-icons.svg#briefcase" />
+      </svg>
+      <i>Состояния моих заявок</i>
+    </div>
+    <table class="table" id="requests">
+      <thead>
+      <tr class="table-primary">
+        <th>ID</th>
+        <th>Заявка</th>
+        <th>Статус</th>
+        <th>Действие</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let request of requests" class="bg-opacity-25"
+          [ngClass]="{
+            'bg-warning': request.state=='На рассмотрении админа',
+            'bg-success': request.state=='Выполнена',
+            'bg-danger': request.state=='Отклонена админом' || request.state=='Отклонена владельцем сервиса',
+            'bg-secondary': request.state=='На рассмотрении у владельца сервиса'
+      }">
+        <td class="usr-reqs text-center" [textContent]="request.reqId"></td>
+        <td class="usr-reqs" (click)="getSysRoles(request.serviceId, request.reqId)" style="cursor:pointer">
+          {{request.context}}
+          <small [id]="'small'+request.reqId"></small>
+        </td>
+        <td class="usr-reqs" [textContent]="request.state"></td>
+        <td class="table-light"><div class="row">
+          <button class="btn btn-outline-warning btn-sm col mybtn"
+             (click)="edit(request.reqId, request.serviceId, request.roleId, request.coment)"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Редактировать">
+            <svg class="bi" width="16" height="16" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#pencil-square" />
+            </svg>
+          </button>
+          <button class="btn btn-outline-danger btn-sm col mybtn"
+             (click)="remove(request.reqId)"
+             data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+             title="Удалить">
+            <svg class="bi" width="16" height="16" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#trash-fill" />
+            </svg>
+          </button>
+          <a *ngIf="request.state=='Выполнена'"
+             routerLink="/showservice/{{request.serviceId}}"
+              class="btn btn-outline-info btn-sm col mybtn"
+              data-bs-toggle="tooltip" data-bs-delay="400" data-bs-html="true"
+              title="Открыть">
+            <svg class="bi" width="16" height="16" fill="currentColor">
+              <use xlink:href="/assets/pict/bootstrap-icons.svg#box-arrow-in-right" />
+            </svg>
+          </a>
+        </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

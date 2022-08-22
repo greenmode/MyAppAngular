@@ -1,0 +1,64 @@
+<div class="row mt-5">
+  <div class="col-md-3">
+  </div>
+  <div class="rounded shadow-sm col-md-8 bg-light">
+    <div class="alert alert-warning">
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="/assets/pict/bootstrap-icons.svg#pencil-square" />
+      </svg>
+      <i>{{title}} c <b>id={{this.cookieService.get('requestIdEdit')}}</b></i>
+    </div>
+<!--    <div th:if="${notExist != null}" class="alert alert-warning">-->
+<!--      Такого запроса не существует!-->
+<!--      <button type="button"-->
+<!--              class="btn btn-outline-primary btn-sm"-->
+<!--              style="float:right"-->
+<!--              onclick="window.history.back();">Вернуться назад-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <p CLASS="alert alert-danger">У данной роли нет доступа к этому сервису!</p>-->
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-3">
+      <div>
+        <label for="service" class="form-label">Выберите сервис</label>
+        <select class="form-select" id="service" formControlName="service">
+          <option  *ngFor="let service of services"
+                   [value]="service.serviceId"
+                   [text]="service.context">
+          </option>
+        </select>
+        <div class="invalid-feedback">
+          Неверное значение!
+        </div>
+      </div>
+      <div class="mt-3">
+        <label for="role" class="form-label">Выберите роль из доступных</label>
+        <select class="form-select" id="role" formControlName="role">
+          <option  *ngFor="let role of roles"
+                   [value]="role.roleId"
+                   [text]="role.role">
+          </option>
+        </select>
+        <div class="invalid-feedback">
+          Неверное значение!
+        </div>
+      </div>
+      <textarea class="form-control mt-3"
+                formControlName="coment"
+                maxlength="1000" rows="4"
+                placeholder="Комментарий, если нужно...">
+      </textarea>
+      <div class="mt-3" style="float:right">
+        <button class="btn btn-danger m-3" routerLink="/user">Отмена</button>
+        <button type="submit" class="btn btn-primary m-3">Сохранить</button>
+      </div>
+    </form>
+<!--    <div th:if="${currentUserId != request.userId}" class="alert alert-danger">-->
+<!--      Вам сюда нельзя!!!-->
+<!--      <button type="button"-->
+<!--              class="btn btn-outline-primary btn-sm"-->
+<!--              style="float:right"-->
+<!--              onclick="window.history.back();">Вернуться назад-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

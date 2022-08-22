@@ -1,0 +1,43 @@
+i {
+  margin-left: 50px;
+}
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+td, th {
+  border: 1px lightsteelblue solid;
+  padding: 0 5px;
+}
+
+.table-light {
+  width: 120px;
+}
+.row {
+  margin-left: 0;
+}
+.usr-reqs {
+  font-size: 14px !important;
+}
+.rounded > div:first-child {
+  margin: -20px 0 30px 0;
+}
+
+#ban {
+  margin-left: 15px;
+}
+#role {
+  --bs-btn-padding-y: 2px;
+  --bs-btn-padding-x: 2px;
+  --bs-btn-font-size: .75rem;
+  float: right;
+  max-height: 30px;
+  max-width: 40px;
+}
+#details {
+  border-radius: 0;
+  font-size: 12px;
+  background-color: #e7ff9c;
+  line-height: 1;
+  min-width: 600px;
+}

@@ -1,0 +1,28 @@
+i {
+  margin-left: 50px;
+}
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+td, th {
+  border: 1px lightsteelblue solid;
+  padding: 0 5px;
+}
+
+.table-light {
+  width: 120px;
+}
+.row {
+  margin-left: 0;
+}
+.usr-reqs {
+  font-size: 14px !important;
+}
+.rounded > div:first-child {
+  margin: -20px 0 30px 0;
+}
+
+#ban {
+  margin-left: 15px;
+}

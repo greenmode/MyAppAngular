@@ -1,0 +1,23 @@
+<header>
+  <div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <div class="col-1 mt-2">
+        <svg class="bi" width="32" height="32" fill="currentColor">
+          <use xlink:href="/assets/pict/bootstrap-icons.svg#person-lines-fill" />
+        </svg>
+      </div>
+      <div class="col-11 col-lg-auto mb-2 mb-lg-0 me-lg-auto" id="head-text">
+        <div class="row" *ngFor="let employee of employee" id="emp">
+          {{employee.fio}},
+          {{employee.position}}
+        </div>
+        <div class="row" *ngFor="let user of user">
+          Вы вошли под пользователем &nbsp;<span id="usr">{{user.username}}</span>
+        </div>
+      </div>
+      <div class="text-end">
+        <a type="button" class="btn btn-primary" (click)="output()">Выйти</a>
+      </div>
+    </div>
+  </div>
+</header>

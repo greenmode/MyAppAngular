@@ -1,0 +1,19 @@
+<div *ngIf="service$ | async as service" class="container">
+  <div class="row mt-5">
+    <div class="rounded shadow-sm col-md10 bg-light">
+      <div class="alert alert-dark">
+        <svg class="bi" width="32" height="32" fill="currentColor">
+          <use xlink:href="/pict/bootstrap-icons.svg#eye" />
+        </svg>
+        <i>Просмотр запрошенной информации</i>
+        <button type="button"
+                class="btn btn-outline-primary btn-sm"
+                style="float:right"
+                onclick="window.history.back();">Вернуться назад
+        </button>
+      </div>
+      <h3>{{service.context}}</h3>
+      <p>{{service.body}}</p>
+    </div>
+  </div>
+</div>

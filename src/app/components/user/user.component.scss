@@ -1,0 +1,30 @@
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+svg + i {
+  margin-left: 10px;
+}
+small {
+  color: white;
+}
+
+.rounded > div:first-child {
+  margin: -20px 0 30px 0;
+}
+
+.usr-reqs {
+  font-size: 14px !important;
+}
+
+.mybtn {
+  max-width: 35px;
+  margin-right: 8px;
+}
+
+.table-light {
+  width: 140px;
+}
+.table-light div {
+  margin-left: 0;
+}
